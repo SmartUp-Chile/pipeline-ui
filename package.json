@@ -1,0 +1,56 @@
+{
+  "name": "@smartup/pipeline-ui",
+  "version": "0.1.0",
+  "description": "Reusable React components for AI Pipeline timeline and history visualization",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./dist/styles/index.css",
+    "./styles/*": "./dist/styles/*"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean --external react --external react-dom",
+    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "marked": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "react",
+    "timeline",
+    "pipeline",
+    "events",
+    "ai",
+    "claude",
+    "visualization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SmartUp-Chile/claude-agent-sdk-typescript"
+  },
+  "license": "MIT"
+}

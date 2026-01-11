@@ -1,0 +1,20 @@
+import { defineConfig } from 'tsup';
+
+export default defineConfig({
+  entry: ['src/index.ts'],
+  format: ['esm', 'cjs'],
+  dts: true,
+  splitting: false,
+  sourcemap: true,
+  clean: true,
+  external: ['react', 'react-dom'],
+  treeshake: true,
+  minify: false,
+  // Include CSS files in the output
+  loader: {
+    '.css': 'copy',
+  },
+  esbuildOptions(options) {
+    options.jsx = 'automatic';
+  },
+});

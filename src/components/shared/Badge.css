@@ -1,0 +1,79 @@
+/* Pipeline Badge Component */
+.pipeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pipeline-space-1);
+  font-family: var(--pipeline-font-sans);
+  font-weight: 500;
+  border-radius: var(--pipeline-radius-full);
+  white-space: nowrap;
+}
+
+/* Sizes */
+.pipeline-badge-sm {
+  padding: 2px 6px;
+  font-size: var(--pipeline-text-xs);
+}
+
+.pipeline-badge-md {
+  padding: 3px 10px;
+  font-size: var(--pipeline-text-xs);
+}
+
+/* Variants */
+.pipeline-badge-default {
+  background: var(--pipeline-bg-surface);
+  color: var(--pipeline-text-secondary);
+}
+
+.pipeline-badge-primary {
+  background: var(--pipeline-accent-glow);
+  color: var(--pipeline-accent-primary);
+}
+
+.pipeline-badge-success {
+  background: var(--pipeline-status-success-bg);
+  color: var(--pipeline-status-success);
+}
+
+.pipeline-badge-warning {
+  background: var(--pipeline-status-waiting-bg);
+  color: var(--pipeline-status-waiting);
+}
+
+.pipeline-badge-danger {
+  background: var(--pipeline-status-failed-bg);
+  color: var(--pipeline-status-failed);
+}
+
+.pipeline-badge-info {
+  background: var(--pipeline-status-running-bg);
+  color: var(--pipeline-status-running);
+}
+
+/* Dot */
+.pipeline-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pipeline-badge-with-dot .pipeline-badge-dot,
+.pipeline-badge-pulse .pipeline-badge-dot {
+  display: block;
+}
+
+/* Pulse animation for running status */
+.pipeline-badge-pulse .pipeline-badge-dot {
+  animation: pipeline-badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes pipeline-badge-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

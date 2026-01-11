@@ -1,0 +1,435 @@
+/* ===== TIMELINE EVENT ===== */
+.pipeline-event {
+  position: relative;
+  border-left: 2px solid var(--pipeline-border-default);
+  padding: 2px 0 2px 12px;
+  margin-left: 8px;
+  transition: all var(--pipeline-duration-fast);
+}
+
+/* Timeline dot */
+.pipeline-event::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pipeline-bg-surface);
+  border: 2px solid var(--pipeline-border-default);
+  transition: all var(--pipeline-duration-fast);
+}
+
+.pipeline-event:hover {
+  background: var(--pipeline-bg-surface);
+}
+
+.pipeline-event-clickable {
+  cursor: pointer;
+}
+
+.pipeline-event-expanded {
+  background: var(--pipeline-bg-elevated);
+  border-radius: 0 var(--pipeline-radius-sm) var(--pipeline-radius-sm) 0;
+  margin-bottom: var(--pipeline-space-2);
+  padding-bottom: var(--pipeline-space-3);
+}
+
+/* Color variations */
+.pipeline-event-success::before {
+  border-color: var(--pipeline-status-success);
+  background: var(--pipeline-status-success);
+}
+.pipeline-event-success {
+  border-left-color: var(--pipeline-status-success);
+}
+
+.pipeline-event-error::before {
+  border-color: var(--pipeline-status-failed);
+  background: var(--pipeline-status-failed);
+}
+.pipeline-event-error {
+  border-left-color: var(--pipeline-status-failed);
+}
+
+.pipeline-event-warning::before {
+  border-color: var(--pipeline-status-warning);
+  background: var(--pipeline-status-warning);
+}
+.pipeline-event-warning {
+  border-left-color: var(--pipeline-status-warning);
+}
+
+.pipeline-event-primary::before {
+  border-color: var(--pipeline-accent-primary);
+  background: var(--pipeline-accent-primary);
+}
+.pipeline-event-primary {
+  border-left-color: var(--pipeline-accent-primary);
+}
+
+.pipeline-event-purple::before {
+  border-color: #a855f7;
+  background: #a855f7;
+}
+.pipeline-event-purple {
+  border-left-color: #a855f7;
+}
+
+.pipeline-event-orange::before {
+  border-color: #f97316;
+  background: #f97316;
+}
+.pipeline-event-orange {
+  border-left-color: #f97316;
+}
+
+.pipeline-event-tool::before {
+  border-color: var(--pipeline-status-waiting);
+  background: var(--pipeline-status-waiting);
+}
+.pipeline-event-tool {
+  border-left-color: var(--pipeline-status-waiting);
+}
+
+.pipeline-event-muted::before {
+  border-color: var(--pipeline-border-strong);
+  background: var(--pipeline-bg-surface);
+}
+.pipeline-event-muted {
+  border-left-color: var(--pipeline-border-default);
+}
+
+/* Grouped/minor events */
+.pipeline-event-grouped {
+  opacity: 0.7;
+  padding: 1px 0 1px 12px;
+}
+
+.pipeline-event-grouped::before {
+  width: 4px;
+  height: 4px;
+  left: -3px;
+}
+
+.pipeline-event-grouped .pipeline-event-row {
+  font-size: var(--pipeline-text-xs);
+}
+
+/* ===== MAIN ROW ===== */
+.pipeline-event-row {
+  display: flex;
+  align-items: center;
+  gap: var(--pipeline-space-2);
+  min-height: 24px;
+  padding-right: var(--pipeline-space-2);
+}
+
+.pipeline-event-icon {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.pipeline-event-title {
+  font-size: var(--pipeline-text-sm);
+  font-weight: 500;
+  color: var(--pipeline-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.pipeline-event-subtitle {
+  flex: 1;
+  font-size: var(--pipeline-text-xs);
+  color: var(--pipeline-text-muted);
+  font-family: var(--pipeline-font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.pipeline-event-time {
+  flex-shrink: 0;
+  font-size: var(--pipeline-text-xs);
+  color: var(--pipeline-text-dim);
+  font-family: var(--pipeline-font-mono);
+}
+
+.pipeline-event-turn {
+  flex-shrink: 0;
+  font-size: 10px;
+  padding: 1px 4px;
+  background: var(--pipeline-bg-void);
+  border-radius: var(--pipeline-radius-xs);
+  color: var(--pipeline-text-dim);
+  font-family: var(--pipeline-font-mono);
+}
+
+.pipeline-event-chevron {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--pipeline-text-dim);
+  transition: transform var(--pipeline-duration-fast);
+}
+
+.pipeline-event-chevron-open {
+  transform: rotate(90deg);
+}
+
+/* ===== QUICK LINKS ===== */
+.pipeline-event-links {
+  display: flex;
+  gap: var(--pipeline-space-1);
+  flex-shrink: 0;
+}
+
+.pipeline-event-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  font-size: 10px;
+  border-radius: var(--pipeline-radius-sm);
+  text-decoration: none;
+  transition: all var(--pipeline-duration-fast);
+  white-space: nowrap;
+}
+
+.pipeline-event-link-shapeup {
+  background: rgba(6, 182, 212, 0.1);
+  color: #06b6d4;
+}
+.pipeline-event-link-shapeup:hover {
+  background: rgba(6, 182, 212, 0.2);
+}
+
+.pipeline-event-link-github-pr,
+.pipeline-event-link-github-commit,
+.pipeline-event-link-github-repo {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+.pipeline-event-link-github-pr:hover,
+.pipeline-event-link-github-commit:hover,
+.pipeline-event-link-github-repo:hover {
+  background: rgba(139, 92, 246, 0.2);
+}
+
+/* ===== EXPANDED DETAILS ===== */
+.pipeline-event-details {
+  margin-top: var(--pipeline-space-2);
+  padding: var(--pipeline-space-3);
+  background: var(--pipeline-bg-void);
+  border-radius: var(--pipeline-radius-sm);
+  overflow: hidden;
+}
+
+/* Markdown content */
+.pipeline-event-markdown {
+  font-size: var(--pipeline-text-sm);
+  color: var(--pipeline-text-secondary);
+  line-height: 1.6;
+}
+
+.pipeline-event-markdown h1,
+.pipeline-event-markdown h2,
+.pipeline-event-markdown h3,
+.pipeline-event-markdown h4 {
+  color: var(--pipeline-text-primary);
+  margin: var(--pipeline-space-3) 0 var(--pipeline-space-2);
+  font-size: var(--pipeline-text-sm);
+  font-weight: 600;
+}
+
+.pipeline-event-markdown h1:first-child,
+.pipeline-event-markdown h2:first-child,
+.pipeline-event-markdown h3:first-child {
+  margin-top: 0;
+}
+
+.pipeline-event-markdown p {
+  margin: 0 0 var(--pipeline-space-2);
+}
+
+.pipeline-event-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.pipeline-event-markdown strong {
+  color: var(--pipeline-text-primary);
+}
+
+.pipeline-event-markdown code {
+  background: var(--pipeline-bg-surface);
+  padding: 2px 4px;
+  border-radius: var(--pipeline-radius-xs);
+  font-family: var(--pipeline-font-mono);
+  font-size: 0.9em;
+}
+
+.pipeline-event-markdown pre {
+  background: var(--pipeline-bg-surface);
+  padding: var(--pipeline-space-2);
+  border-radius: var(--pipeline-radius-xs);
+  overflow-x: auto;
+  margin: var(--pipeline-space-2) 0;
+}
+
+.pipeline-event-markdown pre code {
+  background: none;
+  padding: 0;
+}
+
+.pipeline-event-markdown ul,
+.pipeline-event-markdown ol {
+  margin: var(--pipeline-space-2) 0;
+  padding-left: var(--pipeline-space-4);
+}
+
+.pipeline-event-markdown li {
+  margin: var(--pipeline-space-1) 0;
+}
+
+/* Thinking block */
+.pipeline-event-thinking {
+  font-size: var(--pipeline-text-sm);
+  color: var(--pipeline-text-muted);
+  font-style: italic;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Code display */
+.pipeline-event-code {
+  font-family: var(--pipeline-font-mono);
+  font-size: var(--pipeline-text-xs);
+  color: var(--pipeline-text-secondary);
+  background: var(--pipeline-bg-surface);
+  padding: var(--pipeline-space-2);
+  border-radius: var(--pipeline-radius-xs);
+  overflow-x: auto;
+}
+
+.pipeline-event-code-prompt {
+  color: var(--pipeline-accent-primary);
+  margin-right: var(--pipeline-space-1);
+}
+
+/* Diff display */
+.pipeline-event-diff {
+  font-family: var(--pipeline-font-mono);
+  font-size: var(--pipeline-text-xs);
+}
+
+.pipeline-event-filepath {
+  color: var(--pipeline-text-muted);
+  margin-bottom: var(--pipeline-space-2);
+}
+
+.pipeline-event-diff-removed {
+  color: var(--pipeline-status-failed);
+  background: rgba(239, 68, 68, 0.1);
+  padding: var(--pipeline-space-1) var(--pipeline-space-2);
+  border-radius: var(--pipeline-radius-xs);
+  margin-bottom: var(--pipeline-space-1);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.pipeline-event-diff-added {
+  color: var(--pipeline-status-success);
+  background: rgba(34, 197, 94, 0.1);
+  padding: var(--pipeline-space-1) var(--pipeline-space-2);
+  border-radius: var(--pipeline-radius-xs);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Prompt display */
+.pipeline-event-prompt {
+  font-size: var(--pipeline-text-xs);
+  color: var(--pipeline-text-muted);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  font-family: var(--pipeline-font-mono);
+}
+
+/* JSON display */
+.pipeline-event-json {
+  font-family: var(--pipeline-font-mono);
+  font-size: var(--pipeline-text-xs);
+  color: var(--pipeline-text-muted);
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Review display */
+.pipeline-event-review {
+  /* Container for code review results */
+}
+
+.pipeline-event-verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pipeline-space-2);
+  padding: var(--pipeline-space-1) var(--pipeline-space-2);
+  border-radius: var(--pipeline-radius-sm);
+  font-size: var(--pipeline-text-xs);
+  font-weight: 600;
+  margin-bottom: var(--pipeline-space-2);
+}
+
+.pipeline-event-verdict-approve {
+  background: var(--pipeline-status-success-bg);
+  color: var(--pipeline-status-success);
+}
+
+.pipeline-event-verdict-changes_requested {
+  background: var(--pipeline-status-waiting-bg);
+  color: var(--pipeline-status-waiting);
+}
+
+.pipeline-event-verdict-comment {
+  background: var(--pipeline-accent-glow);
+  color: var(--pipeline-accent-primary);
+}
+
+/* Audit display */
+.pipeline-event-audit {
+  padding-top: var(--pipeline-space-2);
+}
+
+.pipeline-event-audit-outcome {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pipeline-space-2);
+  padding: var(--pipeline-space-1) var(--pipeline-space-2);
+  border-radius: var(--pipeline-radius-sm);
+  font-size: var(--pipeline-text-xs);
+  font-weight: 600;
+  margin-bottom: var(--pipeline-space-3);
+}
+
+.pipeline-event-audit-outcome-success {
+  background: var(--pipeline-status-success-bg);
+  color: var(--pipeline-status-success);
+}
+
+.pipeline-event-audit-outcome-failure {
+  background: var(--pipeline-status-failed-bg);
+  color: var(--pipeline-status-failed);
+}
+
+.pipeline-event-audit-outcome-partial {
+  background: var(--pipeline-status-waiting-bg);
+  color: var(--pipeline-status-waiting);
+}
