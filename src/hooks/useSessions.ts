@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import type { Session, SessionDetail, PipelineStatus } from '../types';
 import { useApi } from './useApi';
 
-interface UseSessionsOptions {
+export interface UseSessionsOptions {
   /** Status filter for sessions */
   status?: PipelineStatus | 'all';
   /** Poll interval in ms (default: 10000, set to 0 to disable) */
@@ -125,7 +125,7 @@ export function useSessions(options: UseSessionsOptions = {}): UseSessionsReturn
   };
 }
 
-interface UseSessionDetailOptions {
+export interface UseSessionDetailOptions {
   /** Pipeline ID to fetch */
   pipelineId: string | null;
   /** Poll interval in ms for running/waiting sessions (default: 5000, set to 0 to disable) */

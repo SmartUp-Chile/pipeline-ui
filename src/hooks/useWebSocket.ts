@@ -5,7 +5,7 @@ import { useApi } from './useApi';
 
 export type ConnectionStatus = 'connecting' | 'connected' | 'disconnected' | 'error';
 
-interface UseWebSocketOptions {
+export interface UseWebSocketOptions {
   onEvent?: (event: PipelineEvent) => void;
   onStatusChange?: (status: string) => void;
   autoReconnect?: boolean;

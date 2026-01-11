@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import type { Session, PipelineStatus, PipelineEvent } from '../../types';
+import type { Session, SessionDetail, PipelineStatus, PipelineEvent } from '../../types';
 import { TimelineEvent, isMinorEvent, shouldHideEvent } from '../timeline';
 import { Button } from '../shared/Button';
 import { Badge } from '../shared/Badge';
-import { usePipelineConfig } from '../../context/PipelineProvider';
+import { useApi } from '../../hooks/useApi';
 import { formatDate, formatDuration, formatCost } from '../../utils/formatters';
 import './HistoryView.css';
 
@@ -74,10 +74,10 @@ export function HistoryView({
   onSessionSelect,
   className,
 }: HistoryViewProps) {
-  const { api } = usePipelineConfig();
+  const api = useApi();
 
   const [sessions, setSessions] = useState<Session[]>([]);
-  const [selectedSession, setSelectedSession] = useState<Session | null>(null);
+  const [selectedSession, setSelectedSession] = useState<SessionDetail | null>(null);
   const [statusFilter, setStatusFilter] = useState<PipelineStatus | 'all'>('all');
   const [eventFilter, setEventFilter] = useState<EventCategory | 'all'>('all');
   const [loading, setLoading] = useState(true);
@@ -106,7 +106,7 @@ export function HistoryView({
         offset: page * PAGE_SIZE,
       });
       const sortedSessions = [...result.sessions].sort((a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()
       );
       setSessions(sortedSessions);
       setTotal(result.total);
@@ -142,11 +142,9 @@ export function HistoryView({
   }, [selectedPipelineId, fetchSessionDetail, selectedSession?.pipelineId]);
 
   const handleSelectSession = useCallback((session: Session) => {
-    setSelectedSession(session);
     onSessionSelect?.(session.pipelineId);
-    if (!session.events || session.events.length === 0) {
-      fetchSessionDetail(session.pipelineId);
-    }
+    // Always fetch full detail to get events
+    fetchSessionDetail(session.pipelineId);
   }, [fetchSessionDetail, onSessionSelect]);
 
   const handleCopyLink = useCallback(() => {
@@ -189,18 +187,18 @@ export function HistoryView({
     }
   }, [api, deleteConfirm, selectedSession, fetchSessions]);
 
-  const filteredEvents = useMemo(() => {
+  const filteredEvents = useMemo((): PipelineEvent[] => {
     if (!selectedSession?.events) return [];
 
-    const visibleEvents = selectedSession.events.filter(e => !shouldHideEvent(e));
+    const visibleEvents = selectedSession.events.filter((e: PipelineEvent) => !shouldHideEvent(e));
 
     if (eventFilter === 'all') {
       return visibleEvents.filter(
-        (e) => EVENT_CATEGORIES[e.type] !== 'debug'
+        (e: PipelineEvent) => EVENT_CATEGORIES[e.type] !== 'debug'
       );
     }
     return visibleEvents.filter(
-      (e) => EVENT_CATEGORIES[e.type] === eventFilter
+      (e: PipelineEvent) => EVENT_CATEGORIES[e.type] === eventFilter
     );
   }, [selectedSession, eventFilter]);
 
@@ -243,7 +241,7 @@ export function HistoryView({
   }, [selectedEventIndices, lastClickedIndex]);
 
   const handleSelectAll = useCallback(() => {
-    const allIndices = new Set(filteredEvents.map((_, i) => i));
+    const allIndices = new Set<number>(filteredEvents.map((_: PipelineEvent, i: number) => i));
     setSelectedEventIndices(allIndices);
   }, [filteredEvents]);
 
@@ -559,7 +557,7 @@ export function HistoryView({
                 {filteredEvents.length === 0 ? (
                   <div className="pipeline-history-empty">No events</div>
                 ) : (
-                  filteredEvents.map((event, i) => (
+                  filteredEvents.map((event: PipelineEvent, i: number) => (
                     <div
                       key={`${event.type}-${event.timestamp}-${i}`}
                       className={`pipeline-history-event-wrapper ${selectedEventIndices.has(i) ? 'selected' : ''}`}

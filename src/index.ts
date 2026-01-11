@@ -23,8 +23,8 @@ export type { UseWebSocketOptions } from './hooks/useWebSocket';
 export { useApi } from './hooks/useApi';
 
 // Services
-export { createApiClient } from './services/api';
-export type { ApiClient } from './services/api';
+export { createApiClient, extractTaskId } from './services/api';
+export type { PipelineApiClient } from './services/api';
 
 // Utils
 export * from './utils/formatters';
@@ -34,16 +34,18 @@ export type {
   PipelineEvent,
   PipelineStatus,
   Session,
+  SessionDetail,
   WorkflowType,
   VerbosityLevel,
   ModelType,
   StartPipelineRequest,
-  StartPipelineResponse,
-  ListSessionsParams,
   ListSessionsResponse,
+  ApprovePipelineResponse,
+  ResumeSessionResponse,
   PipelineUIConfig,
-  PipelineUILabels,
-  PipelineUIFeatures,
+  Pipeline,
+  PipelineResult,
+  EventCategory,
 } from './types';
 
 // Styles - import this in your app

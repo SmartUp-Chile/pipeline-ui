@@ -2,7 +2,8 @@ import { useState } from 'react';
 import type { WorkflowType, VerbosityLevel, ModelType, StartPipelineRequest } from '../../types';
 import { Modal } from '../shared/Modal';
 import { Button } from '../shared/Button';
-import { usePipelineConfig } from '../../context/PipelineProvider';
+import { useApi } from '../../hooks/useApi';
+import { extractTaskId } from '../../services/api';
 import './StartPipelineModal.css';
 
 export interface StartPipelineModalProps {
@@ -42,7 +43,7 @@ const AGENTS = [
 type ExecutionMode = 'standard' | 'yolo' | 'dryrun';
 
 export function StartPipelineModal({ isOpen, onClose, onStarted }: StartPipelineModalProps) {
-  const { api } = usePipelineConfig();
+  const api = useApi();
 
   const [taskInput, setTaskInput] = useState('');
   const [workflowType, setWorkflowType] = useState<WorkflowType>('resolve-task');
@@ -57,7 +58,7 @@ export function StartPipelineModal({ isOpen, onClose, onStarted }: StartPipeline
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
-    const taskId = api.extractTaskId(taskInput.trim());
+    const taskId = extractTaskId(taskInput.trim());
     if (!taskId) {
       setError('Please enter a task ID or URL');
       return;

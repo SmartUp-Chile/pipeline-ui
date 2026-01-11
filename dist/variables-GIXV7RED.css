@@ -1,0 +1,128 @@
+/**
+ * Pipeline UI Design Tokens
+ *
+ * All variables are prefixed with --pipeline- to avoid conflicts.
+ * Override any of these in your project's CSS to customize the look.
+ *
+ * @example
+ * // In your app's CSS:
+ * :root {
+ *   --pipeline-accent-primary: #6366f1;
+ *   --pipeline-bg-surface: #1e1e2e;
+ * }
+ */
+:root {
+  /* === BACKGROUND COLORS === */
+  /* Override these to match your app's theme */
+  --pipeline-bg-void: #030308;
+  --pipeline-bg-surface: #080810;
+  --pipeline-bg-elevated: #0f0f18;
+  --pipeline-bg-overlay: #16161f;
+  --pipeline-bg-hover: #1c1c28;
+
+  /* === TEXT COLORS === */
+  --pipeline-text-primary: #f0f0f8;
+  --pipeline-text-secondary: #a0a0b8;
+  --pipeline-text-muted: #606078;
+  --pipeline-text-dim: #404058;
+
+  /* === STATUS COLORS === */
+  /* Used for pipeline states (running, waiting, success, failed) */
+  --pipeline-status-running: #00d4aa;
+  --pipeline-status-running-bg: rgba(0, 212, 170, 0.1);
+  --pipeline-status-waiting: #ffb800;
+  --pipeline-status-waiting-bg: rgba(255, 184, 0, 0.1);
+  --pipeline-status-success: #00e676;
+  --pipeline-status-success-bg: rgba(0, 230, 118, 0.1);
+  --pipeline-status-failed: #ff4757;
+  --pipeline-status-failed-bg: rgba(255, 71, 87, 0.1);
+  --pipeline-status-warning: #ffb800;
+  --pipeline-status-warning-bg: rgba(255, 184, 0, 0.1);
+
+  /* === ACCENT COLORS === */
+  --pipeline-accent-primary: #00b4ff;
+  --pipeline-accent-secondary: #0088cc;
+  --pipeline-accent-glow: rgba(0, 180, 255, 0.15);
+  --pipeline-accent-border: rgba(0, 180, 255, 0.3);
+
+  /* === EVENT CARD ACCENTS === */
+  /* Specific colors for different event types */
+  --pipeline-card-message: #00b4ff;
+  --pipeline-card-thinking: #9333ea;
+  --pipeline-card-tool: #f59e0b;
+  --pipeline-card-agent: #00d4aa;
+  --pipeline-card-mcp: #8b5cf6;
+  --pipeline-card-plan: #00b4ff;
+  --pipeline-card-review: #ec4899;
+  --pipeline-card-error: #ff4757;
+
+  /* === BORDERS === */
+  --pipeline-border-subtle: rgba(255, 255, 255, 0.05);
+  --pipeline-border-default: rgba(255, 255, 255, 0.08);
+  --pipeline-border-strong: rgba(255, 255, 255, 0.12);
+
+  /* === TYPOGRAPHY === */
+  /* Font families - override to use your app's fonts */
+  --pipeline-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --pipeline-font-mono: 'Fira Code', 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Font sizes */
+  --pipeline-text-xs: 0.6875rem;   /* 11px */
+  --pipeline-text-sm: 0.8125rem;   /* 13px */
+  --pipeline-text-base: 0.9375rem; /* 15px */
+  --pipeline-text-lg: 1.125rem;    /* 18px */
+  --pipeline-text-xl: 1.5rem;      /* 24px */
+
+  /* === SPACING === */
+  --pipeline-space-1: 0.25rem;   /* 4px */
+  --pipeline-space-2: 0.5rem;    /* 8px */
+  --pipeline-space-3: 0.75rem;   /* 12px */
+  --pipeline-space-4: 1rem;      /* 16px */
+  --pipeline-space-5: 1.25rem;   /* 20px */
+  --pipeline-space-6: 1.5rem;    /* 24px */
+  --pipeline-space-8: 2rem;      /* 32px */
+
+  /* === BORDER RADIUS === */
+  --pipeline-radius-xs: 2px;
+  --pipeline-radius-sm: 4px;
+  --pipeline-radius-md: 8px;
+  --pipeline-radius-lg: 12px;
+  --pipeline-radius-full: 9999px;
+
+  /* === SHADOWS === */
+  --pipeline-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --pipeline-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --pipeline-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* === ANIMATION === */
+  --pipeline-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --pipeline-duration-fast: 150ms;
+  --pipeline-duration-normal: 250ms;
+}
+
+/**
+ * Light Theme Preset
+ *
+ * To use the light theme, add this class to a parent element:
+ * <div className="pipeline-theme-light">...</div>
+ */
+.pipeline-theme-light {
+  --pipeline-bg-void: #ffffff;
+  --pipeline-bg-surface: #f8f9fa;
+  --pipeline-bg-elevated: #f1f3f4;
+  --pipeline-bg-overlay: #e8eaed;
+  --pipeline-bg-hover: #dadce0;
+
+  --pipeline-text-primary: #202124;
+  --pipeline-text-secondary: #5f6368;
+  --pipeline-text-muted: #80868b;
+  --pipeline-text-dim: #9aa0a6;
+
+  --pipeline-border-subtle: rgba(0, 0, 0, 0.05);
+  --pipeline-border-default: rgba(0, 0, 0, 0.08);
+  --pipeline-border-strong: rgba(0, 0, 0, 0.12);
+
+  --pipeline-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --pipeline-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --pipeline-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+}

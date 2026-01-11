@@ -1,0 +1,119 @@
+/* Pipeline Button Component */
+.pipeline-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pipeline-space-2);
+  font-family: var(--pipeline-font-sans);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all var(--pipeline-duration-fast) var(--pipeline-ease-out);
+  white-space: nowrap;
+}
+
+.pipeline-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.pipeline-btn-sm {
+  padding: var(--pipeline-space-1) var(--pipeline-space-2);
+  font-size: var(--pipeline-text-xs);
+  border-radius: var(--pipeline-radius-sm);
+}
+
+.pipeline-btn-md {
+  padding: var(--pipeline-space-2) var(--pipeline-space-4);
+  font-size: var(--pipeline-text-sm);
+  border-radius: var(--pipeline-radius-md);
+}
+
+.pipeline-btn-lg {
+  padding: var(--pipeline-space-3) var(--pipeline-space-5);
+  font-size: var(--pipeline-text-base);
+  border-radius: var(--pipeline-radius-md);
+}
+
+.pipeline-btn-full-width {
+  width: 100%;
+}
+
+/* Variants */
+.pipeline-btn-primary {
+  background: var(--pipeline-accent-primary);
+  color: var(--pipeline-bg-void);
+}
+
+.pipeline-btn-primary:hover:not(:disabled) {
+  background: var(--pipeline-accent-secondary);
+}
+
+.pipeline-btn-secondary {
+  background: var(--pipeline-bg-surface);
+  color: var(--pipeline-text-primary);
+  border: 1px solid var(--pipeline-border-default);
+}
+
+.pipeline-btn-secondary:hover:not(:disabled) {
+  background: var(--pipeline-bg-elevated);
+  border-color: var(--pipeline-border-strong);
+}
+
+.pipeline-btn-ghost {
+  background: transparent;
+  color: var(--pipeline-text-secondary);
+}
+
+.pipeline-btn-ghost:hover:not(:disabled) {
+  background: var(--pipeline-bg-hover);
+  color: var(--pipeline-text-primary);
+}
+
+.pipeline-btn-danger {
+  background: var(--pipeline-status-failed);
+  color: white;
+}
+
+.pipeline-btn-danger:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.pipeline-btn-success {
+  background: var(--pipeline-status-success);
+  color: var(--pipeline-bg-void);
+}
+
+.pipeline-btn-success:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+/* Loading state */
+.pipeline-btn-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.pipeline-btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: pipeline-btn-spin 0.6s linear infinite;
+}
+
+@keyframes pipeline-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon */
+.pipeline-btn-icon,
+.pipeline-btn-icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
