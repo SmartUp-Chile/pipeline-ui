@@ -16,6 +16,7 @@
   },
   "files": [
     "dist",
+    "scripts",
     "README.md"
   ],
   "scripts": {
@@ -23,7 +24,8 @@
     "build:styles": "mkdir -p dist/styles && cat dist/variables-*.css dist/Button-*.css dist/Badge-*.css dist/Modal-*.css dist/TimelineEvent-*.css dist/HistoryView-*.css dist/StartPipelineModal-*.css > dist/styles/index.css && cp dist/variables-*.css dist/styles/variables.css",
     "dev": "tsup src/index.ts --format esm --dts --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx"
+    "lint": "eslint src --ext .ts,.tsx",
+    "postinstall": "node scripts/postinstall.js"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
